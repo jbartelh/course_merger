@@ -5,3 +5,12 @@ __pycache__/
 
 #virtual env
 venv/
+
+#vs code
+.vscode/
+
+#test
+*.tar.gz
+
+#
+tmp/
