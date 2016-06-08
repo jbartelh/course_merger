@@ -1,5 +1,6 @@
 import tarfile
 import os
+import errno
 
 def extract_tar_arch(filename, dir):
     ''' extract the given filename (*.tar.gz) into the given directory '''
@@ -28,7 +29,7 @@ def remove_empty_folder(dir):
             try:
                 os.rmdir(os.path.join(root, name))
             except OSError as ex:
-                if ex.errno == 39:
+                if ex.errno == errno.ENOTEMPTY:
                     print 'folder not empty'
                     
     
