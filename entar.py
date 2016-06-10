@@ -2,10 +2,10 @@ import tarfile
 import os
 import errno
 
-def extract_tar_arch(input_filename, source_dir):
+def extract_tar_arch(input_filename, destination_dir):
     ''' extract the given filename (*.tar.gz) into the given directory '''
     with tarfile.open(input_filename, 'r') as tar:
-        tar.extractall(source_dir)
+        tar.extractall(destination_dir)
 
 def make_tarfile(output_filename, source_dir):
     ''' creates a tar archive with from the given
@@ -22,8 +22,6 @@ def remove_empty_folder(directory):
             try:
                 os.rmdir(os.path.join(root, name))
             except OSError as ex:
-            
                 if ex.errno == errno.ENOTEMPTY:
                     print 'folder not empty'
-## MAIN ##
-make_tarfile('2016_SS_clean.tar.gz', 'tmp/2016_SS')
+

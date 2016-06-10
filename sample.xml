@@ -1,0 +1,14 @@
+<menu>
+    <opcao1>Aspargos</opcao1>
+    <opcao2>Tomate frito</opcao2>
+    <opcao3>Abobora caramelizada</opcao3>
+    <opcao4>Churrasco de ovelha</opcao4>
+    <opcao5>Pizza</opcao5>
+    <opcao6>
+        <lol>Copter</lol>
+        <meh>lolcopter</meh>
+        <bla>
+            <woo>foo</woo>
+        </bla>
+    </opcao6>
+</menu>

@@ -26,4 +26,18 @@ else:
 #write three
 firstTree.write(args.output)
 
+## MAIN ##
+#Extract_File_A
+extract_tar_arch('2016_SS.tar.gz', './tmp')
+
+#Extract_File_B
+
+#Clean_A
+
+#Clean_B
+
+#Combine_A_B
+
+#Pack_A_B
+make_tarfile('2016_SS_clean.tar.gz', 'tmp/2016_SS')
 
