@@ -1,0 +1,566 @@
+<course advanced_modules="[&quot;split_test&quot;, &quot;annotatable&quot;, &quot;recommender&quot;, &quot;done&quot;]" cohort_config="{&quot;cohorted&quot;: true}" course="TKD" display_name="Kurskopie" end="2016-10-28T00:00:00Z" enrollment_end="2016-07-29T00:00:00Z" enrollment_start="2015-12-14T00:00:00Z" mobile_available="false" org="HochschuleOsnabrueck" show_calculator="true" start="2015-12-15T00:00:00Z" url_name="2016_SS" user_partitions="[{&quot;name&quot;: &quot;Content Group Configuration&quot;, &quot;version&quot;: 2, &quot;groups&quot;: [{&quot;version&quot;: 1, &quot;id&quot;: 1767435831, &quot;name&quot;: &quot;Gruppe 1&quot;}, {&quot;version&quot;: 1, &quot;id&quot;: 1443965338, &quot;name&quot;: &quot;Leere Gruppe&quot;}, {&quot;version&quot;: 1, &quot;id&quot;: 831791670, &quot;name&quot;: &quot;Gruppe 2&quot;}, {&quot;version&quot;: 1, &quot;id&quot;: 1185862920, &quot;name&quot;: &quot;Gruppe 3&quot;}], &quot;scheme&quot;: &quot;cohort&quot;, &quot;id&quot;: 1222126763, &quot;description&quot;: &quot;The groups in this configuration can be mapped to cohort groups in the LMS.&quot;}, {&quot;name&quot;: &quot;Testkonfiguration&quot;, &quot;version&quot;: 2, &quot;groups&quot;: [{&quot;version&quot;: 1, &quot;id&quot;: 1979493439, &quot;name&quot;: &quot;Group A&quot;}, {&quot;version&quot;: 1, &quot;id&quot;: 664250297, &quot;name&quot;: &quot;Group B&quot;}, {&quot;version&quot;: 1, &quot;id&quot;: 511187804, &quot;name&quot;: &quot;Group C&quot;}], &quot;scheme&quot;: &quot;random&quot;, &quot;id&quot;: 627819067, &quot;description&quot;: &quot;&quot;}]">
+  
+  
+  <chapter display_name="Conditional" url_name="Conditional">
+    
+  
+    <sequential display_name="Test" url_name="Test">
+      
+  
+      <vertical display_name="Frage" url_name="Frage">
+        
+  
+        <problem url_name="Multiple_Choice" />
+      </vertical>
+      <vertical display_name="Ziele" url_name="Ziele">
+        
+  
+        <html display_name="falsch" filename="falsch" url_name="falsch" />
+        <html display_name="richtig" filename="richtig" url_name="richtig" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Conditional 2" url_name="Conditional_2">
+      
+  
+      <vertical display_name="Frage" url_name="Frage_0">
+        
+  
+        <problem url_name="Math_Expression_Input" />
+      </vertical>
+      <vertical display_name="Antworten" url_name="Antworten">
+        
+  
+        <conditional correct="False" display_name="Antworten" message="" sources="i4x://HochschuleOsnabrueck/TKD/problem/9af9714a2b7946138f85b8846c678401" url_name="conditional_e703bb99633c">
+          
+  
+          <html display_name="Antwort A" filename="Antwort_A" url_name="Antwort_A" />
+        </conditional>
+        <conditional correct="True" display_name="Antworten" message="" sources="i4x://HochschuleOsnabrueck/TKD/problem/9af9714a2b7946138f85b8846c678401" url_name="conditional_42f99b15b3c1">
+          
+  
+          <html display_name="Antwort B" filename="Antwort_B" url_name="Antwort_B" />
+        </conditional>
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Adaptive Hint" url_name="Adaptive_Hint">
+    
+  
+    <sequential display_name="Test" url_name="Test_0">
+      
+  
+      <vertical display_name="Testunit" url_name="Testunit">
+        
+  
+        <problem url_name="Problem_with_Adaptive_Hint" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="A/B Test" url_name="A_B_Test">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel">
+      
+  
+      <vertical display_name="A/B" url_name="A_B">
+        
+  
+        <split_test display_name="A/B" group_id_to_child="{&quot;511187804&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/710691a5fc414860800d486875e62a44&quot;, &quot;439059721&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/fbd476f0334a467bb741a503f3c1e00e&quot;, &quot;361617846&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/8f91c55df6534e8a89ff53eff64ac139&quot;, &quot;664250297&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/2c841d40df6f4d1f9784799184bbe46b&quot;, &quot;667342955&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/3e70822c6b744c68a42788010d9a90ab&quot;, &quot;1979493439&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/b0a0457594404750af1d8dde5d794ea6&quot;}" url_name="A_B_0" user_partition_id="627819067">
+          
+  
+          <vertical display_name="Group ID 1979493439" url_name="Group_ID_1979493439">
+            
+  
+            <problem url_name="Checkboxes" />
+          </vertical>
+          <vertical display_name="Group ID 664250297" url_name="Group_ID_664250297">
+            
+  
+            <problem url_name="Dropdown" />
+          </vertical>
+          <vertical display_name="Group ID 511187804" url_name="Group_ID_511187804">
+            
+  
+            <problem url_name="Multiple_Choice_5" />
+          </vertical>
+        </split_test>
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Gruppenkonfiguration" url_name="Gruppenkonfiguration">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_0">
+      
+  
+      <vertical display_name="Test" url_name="Test_1">
+        
+  
+        <problem url_name="Checkboxes_3" />
+        <problem url_name="Dropdown_4" />
+        <problem url_name="Multiple_Choice_11" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Videos" url_name="Videos">
+    
+  
+    <sequential display_name="SRT" url_name="SRT">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_1">
+        
+  
+        <video display_name="Video" download_video="false" sub="c8enzCqpETo" url_name="Video" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Zwischenfragen" url_name="Zwischenfragen">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_2">
+        
+  
+        <video display_name="Video" download_track="true" download_video="false" end_time="00:01:00" sub="c8enzCqpETo" url_name="Video_0" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+        <problem url_name="Text_Input" />
+        <video display_name="Video" download_video="false" end_time="00:02:00" start_time="00:01:00" sub="c8enzCqpETo" url_name="Video_1" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Quiz im Video" url_name="Quiz_im_Video">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_3">
+        
+  
+        <html display_name="Steuerung" editor="raw" filename="Steuerung" url_name="Steuerung" />
+        <video display_name="Lineare Gleichungssysteme" download_video="false" sub="c8enzCqpETo" url_name="Lineare_Gleichungssysteme" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+        <problem url_name="Frage_1" />
+        <problem url_name="Frage_2" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Hidden Content" url_name="Hidden_Content">
+    
+  
+    <sequential display_name="Zugriff auf geheimen Inhalt" url_name="Zugriff_auf_geheimen_Inhalt">
+      
+  
+      <vertical display_name="Im Text" url_name="Im_Text">
+        
+  
+        <html display_name="Raw HTML" editor="raw" filename="Raw_HTML" url_name="Raw_HTML" />
+      </vertical>
+      <vertical display_name="Geheime Subsection" url_name="Geheime_Subsection">
+        
+  
+        <html display_name="Geheime Subsection" filename="Geheime_Subsection_0" url_name="Geheime_Subsection_0" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Geheime Section" hide_from_toc="true" start="2015-02-01T08:00:00Z" url_name="Geheime_Section">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_4">
+        
+  
+        <html display_name="Beispiel" filename="Beispiel_5" url_name="Beispiel_5" />
+        <problem url_name="Multiple_Choice_17" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Gesplittete Punktevergabe" url_name="Gesplittete_Punktevergabe">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_6">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_7">
+        
+  
+        <problem url_name="Blank_Common_Problem" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Annotational" url_name="Annotational">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_8">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_9">
+        
+  
+        <annotatable display_name="Beispiel" url_name="Beispiel_10">
+          
+  
+          <instructions display_name="Beispiel" url_name="Beispiel_11">
+            
+    
+            <p>Enter your (optional) instructions for the exercise in HTML format.</p>
+            
+    
+            <p>
+              Annotations are specified by an 
+              <code>&lt;annotation&gt;</code>
+               tag which may may have the following attributes:
+            </p>
+            
+    
+            <ul class="instructions-template">
+              
+      
+              <li>
+                <code>title</code>
+                 (optional). Title of the annotation. Defaults to 
+                <i>Commentary</i>
+                 if omitted.
+              </li>
+              
+      
+              <li>
+                <code>body</code>
+                 (
+                <b>required</b>
+                ). Text of the annotation.
+              </li>
+              
+      
+              <li>
+                <code>problem</code>
+                 (optional). Numeric index of the problem associated with this annotation. This is a zero-based index, so the first problem on the page would have 
+                <code>problem="0"</code>
+                .
+              </li>
+              
+      
+              <li>
+                <code>highlight</code>
+                 (optional). Possible values: yellow, red, orange, green, blue, or purple. Defaults to yellow if this attribute is omitted.
+              </li>
+              
+    
+            </ul>
+            
+  
+          </instructions>
+          
+  
+          <p display_name="Beispiel" url_name="Beispiel_12">Add your HTML with annotation spans here.</p>
+          
+  
+          <p display_name="Beispiel" url_name="Beispiel_13">
+            Hier werden ein Paar Textabschnitte hervorgehoben zu denen sp&#228;ter Fragen beantwortet werden m&#252;ssen. 
+            <annotation body="Kommentar 1" highlight="yellow" problem="0" title="Frage 1">Es gibt 18 Vereine in der Fu&#223;ballbundesliga,</annotation>
+             aber es wird meistens nur der FC Bayern Meister.
+          </p>
+          
+  
+          <p display_name="Beispiel" url_name="Beispiel_14">
+            Das liegt daran, 
+            <annotation body="Kommentar 2" problem="1" title="Frage 2">dass Osnabr&#252;ck noch nicht in der ersten Liga spielt.</annotation>
+             
+          </p>
+          
+
+        </annotatable>
+        <problem url_name="Beispiel_15" />
+        <problem url_name="Beispiel_18" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Recommender" url_name="Recommender">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_21">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_22">
+        
+  
+        <html display_name="Erkl&#228;rung" filename="Erkl&#228;rung" url_name="Erkl&#228;rung" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <wiki display_name="Kurskopie" slug="HochschuleOsnabrueck.TKD.2016_SS" url_name="Kurskopie" />
+  
+
+<chapter display_name="Conditional" url_name="Conditional_0">
+    
+  
+    <sequential display_name="Test" url_name="Test_2">
+      
+  
+      <vertical display_name="Frage" url_name="Frage_3">
+        
+  
+        <problem url_name="Multiple_Choice_23" />
+      </vertical>
+      <vertical display_name="Ziele" url_name="Ziele_0">
+        
+  
+        <html display_name="falsch" filename="falsch_0" url_name="falsch_0" />
+        <html display_name="richtig" filename="richtig_0" url_name="richtig_0" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Conditional 2" url_name="Conditional_2_0">
+      
+  
+      <vertical display_name="Frage" url_name="Frage_4">
+        
+  
+        <problem url_name="Math_Expression_Input_2" />
+      </vertical>
+      <vertical display_name="Antworten" url_name="Antworten_0">
+        
+  
+        <conditional correct="False" display_name="Antworten" message="" sources="i4x://HochschuleOsnabrueck/TKD/problem/9af9714a2b7946138f85b8846c678401" url_name="conditional_e703bb99633c">
+          
+  
+          <html display_name="Antwort A" filename="Antwort_A_0" url_name="Antwort_A_0" />
+        </conditional>
+        <conditional correct="True" display_name="Antworten" message="" sources="i4x://HochschuleOsnabrueck/TKD/problem/9af9714a2b7946138f85b8846c678401" url_name="conditional_42f99b15b3c1">
+          
+  
+          <html display_name="Antwort B" filename="Antwort_B_0" url_name="Antwort_B_0" />
+        </conditional>
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Adaptive Hint" url_name="Adaptive_Hint_0">
+    
+  
+    <sequential display_name="Test" url_name="Test_3">
+      
+  
+      <vertical display_name="Testunit" url_name="Testunit_0">
+        
+  
+        <problem url_name="Problem_with_Adaptive_Hint" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="A/B Test" url_name="A_B_Test_0">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_23">
+      
+  
+      <vertical display_name="A/B" url_name="A_B_1">
+        
+  
+        <split_test display_name="A/B" group_id_to_child="{&quot;511187804&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/710691a5fc414860800d486875e62a44&quot;, &quot;439059721&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/fbd476f0334a467bb741a503f3c1e00e&quot;, &quot;361617846&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/8f91c55df6534e8a89ff53eff64ac139&quot;, &quot;664250297&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/2c841d40df6f4d1f9784799184bbe46b&quot;, &quot;667342955&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/3e70822c6b744c68a42788010d9a90ab&quot;, &quot;1979493439&quot;: &quot;i4x://HochschuleOsnabrueck/TKD/vertical/b0a0457594404750af1d8dde5d794ea6&quot;}" url_name="A_B_2" user_partition_id="627819067">
+          
+  
+          <vertical display_name="Group ID 1979493439" url_name="Group_ID_1979493439_0">
+            
+  
+            <problem url_name="Checkboxes_7" />
+          </vertical>
+          <vertical display_name="Group ID 664250297" url_name="Group_ID_664250297_0">
+            
+  
+            <problem url_name="Dropdown_9" />
+          </vertical>
+          <vertical display_name="Group ID 511187804" url_name="Group_ID_511187804_0">
+            
+  
+            <problem url_name="Multiple_Choice_29" />
+          </vertical>
+        </split_test>
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Gruppenkonfiguration" url_name="Gruppenkonfiguration_0">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_24">
+      
+  
+      <vertical display_name="Test" url_name="Test_4">
+        
+  
+        <problem url_name="Checkboxes_11" />
+        <problem url_name="Dropdown_14" />
+        <problem url_name="Multiple_Choice_35" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Videos" url_name="Videos_0">
+    
+  
+    <sequential display_name="SRT" url_name="SRT_0">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_25">
+        
+  
+        <video display_name="Video" download_video="false" sub="c8enzCqpETo" url_name="Video_2" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Zwischenfragen" url_name="Zwischenfragen_0">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_26">
+        
+  
+        <video display_name="Video" download_track="true" download_video="false" end_time="00:01:00" sub="c8enzCqpETo" url_name="Video_3" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+        <problem url_name="Text_Input_2" />
+        <video display_name="Video" download_video="false" end_time="00:02:00" start_time="00:01:00" sub="c8enzCqpETo" url_name="Video_4" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Quiz im Video" url_name="Quiz_im_Video_0">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_27">
+        
+  
+        <html display_name="Steuerung" editor="raw" filename="Steuerung_0" url_name="Steuerung_0" />
+        <video display_name="Lineare Gleichungssysteme" download_video="false" sub="c8enzCqpETo" url_name="Lineare_Gleichungssysteme_0" youtube="1.00:c8enzCqpETo" youtube_id_1_0="c8enzCqpETo" />
+        <problem url_name="Frage_1_2" />
+        <problem url_name="Frage_2_2" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Hidden Content" url_name="Hidden_Content_0">
+    
+  
+    <sequential display_name="Zugriff auf geheimen Inhalt" url_name="Zugriff_auf_geheimen_Inhalt_0">
+      
+  
+      <vertical display_name="Im Text" url_name="Im_Text_0">
+        
+  
+        <html display_name="Raw HTML" editor="raw" filename="Raw_HTML_0" url_name="Raw_HTML_0" />
+      </vertical>
+      <vertical display_name="Geheime Subsection" url_name="Geheime_Subsection_1">
+        
+  
+        <html display_name="Geheime Subsection" filename="Geheime_Subsection_2" url_name="Geheime_Subsection_2" />
+      </vertical>
+    </sequential>
+    <sequential display_name="Geheime Section" hide_from_toc="true" start="2015-02-01T08:00:00Z" url_name="Geheime_Section_0">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_28">
+        
+  
+        <html display_name="Beispiel" filename="Beispiel_29" url_name="Beispiel_29" />
+        <problem url_name="Multiple_Choice_41" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Gesplittete Punktevergabe" url_name="Gesplittete_Punktevergabe_0">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_30">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_31">
+        
+  
+        <problem url_name="Blank_Common_Problem_3" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Annotational" url_name="Annotational_0">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_32">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_33">
+        
+  
+        <annotatable display_name="Beispiel" url_name="Beispiel_34">
+          
+  
+          <instructions display_name="Beispiel" url_name="Beispiel_35">
+            
+    
+            <p>Enter your (optional) instructions for the exercise in HTML format.</p>
+            
+    
+            <p>
+              Annotations are specified by an 
+              <code>&lt;annotation&gt;</code>
+               tag which may may have the following attributes:
+            </p>
+            
+    
+            <ul class="instructions-template">
+              
+      
+              <li>
+                <code>title</code>
+                 (optional). Title of the annotation. Defaults to 
+                <i>Commentary</i>
+                 if omitted.
+              </li>
+              
+      
+              <li>
+                <code>body</code>
+                 (
+                <b>required</b>
+                ). Text of the annotation.
+              </li>
+              
+      
+              <li>
+                <code>problem</code>
+                 (optional). Numeric index of the problem associated with this annotation. This is a zero-based index, so the first problem on the page would have 
+                <code>problem="0"</code>
+                .
+              </li>
+              
+      
+              <li>
+                <code>highlight</code>
+                 (optional). Possible values: yellow, red, orange, green, blue, or purple. Defaults to yellow if this attribute is omitted.
+              </li>
+              
+    
+            </ul>
+            
+  
+          </instructions>
+          
+  
+          <p display_name="Beispiel" url_name="Beispiel_36">Add your HTML with annotation spans here.</p>
+          
+  
+          <p display_name="Beispiel" url_name="Beispiel_37">
+            Hier werden ein Paar Textabschnitte hervorgehoben zu denen sp&#228;ter Fragen beantwortet werden m&#252;ssen. 
+            <annotation body="Kommentar 1" highlight="yellow" problem="0" title="Frage 1">Es gibt 18 Vereine in der Fu&#223;ballbundesliga,</annotation>
+             aber es wird meistens nur der FC Bayern Meister.
+          </p>
+          
+  
+          <p display_name="Beispiel" url_name="Beispiel_38">
+            Das liegt daran, 
+            <annotation body="Kommentar 2" problem="1" title="Frage 2">dass Osnabr&#252;ck noch nicht in der ersten Liga spielt.</annotation>
+             
+          </p>
+          
+
+        </annotatable>
+        <problem url_name="Beispiel_39" />
+        <problem url_name="Beispiel_42" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <chapter display_name="Recommender" url_name="Recommender_0">
+    
+  
+    <sequential display_name="Beispiel" url_name="Beispiel_45">
+      
+  
+      <vertical display_name="Beispiel" url_name="Beispiel_46">
+        
+  
+        <html display_name="Erkl&#228;rung" filename="Erkl&#228;rung_0" url_name="Erkl&#228;rung_0" />
+      </vertical>
+    </sequential>
+  </chapter>
+  <wiki display_name="Kurskopie" slug="HochschuleOsnabrueck.TKD.2016_SS" url_name="Kurskopie_0" />
+  
+
+</course>

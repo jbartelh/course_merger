@@ -15,9 +15,9 @@ def make_tarfile(output_filename, source_dir):
 
 def remove_empty_folder(directory):
     ''' to clean-up after the clean_studio_xml
-    process remove all empty folder '''
+    process. Removes all empty folder '''
 
-    for root, dirs in os.walk(directory):
+    for root, dirs, files in os.walk(directory):
         for name in dirs:
             try:
                 os.rmdir(os.path.join(root, name))

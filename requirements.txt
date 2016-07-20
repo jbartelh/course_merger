@@ -1,0 +1,4 @@
+gdata==2.0.18
+PyRSS2Gen==1.1
+git+https://github.com/jbartelh/edxml-tools.git#egg=XmlStudioCleaner
+youtube-dl==2016.6.14
