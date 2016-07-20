@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as etree
+import os,os.path
 
 class XmlMerger(object):
     ''' merges cleaned edx courses together'''
@@ -32,12 +33,11 @@ class XmlMerger(object):
             
         xml_root.write(output_file)
 
-    def append(self, output_file=None):
+    def append(self):
         ''' Append course A with the content of course B '''
         self.__append_course_a()
-        if output_file == None:
-            output_file = 'tmp.xml'
-        self.__write_xml(self.first_tree, output_file)
+        os.unlink(self.xml_file_a)
+        self.__write_xml(self.first_tree, self.xml_file_a)
         
     def insert_at(self, insert_pos):
         ''' Inserts course b at the given position in course a '''

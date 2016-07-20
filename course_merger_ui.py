@@ -38,7 +38,7 @@ class App(tk.Frame):
 def main():
     ''' main '''
     root = tk.Tk()
-    app = App(root, filename='./tmp/2016_SS/course.xml')
+    app = App(root, filename='./tmp/A/course.xml')
     app.mainloop()
 
 if __name__ == '__main__':

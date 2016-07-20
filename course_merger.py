@@ -3,6 +3,7 @@ import argparse
 import entar
 import studio_cleaner.clean_studio_xml as csx
 import xmlmerger as merger
+import os, os.path
 
 def parseargs():
     ''' Parse the command-line arguments '''
@@ -45,6 +46,13 @@ def main():
     entar.extract_tar_arch(args.first, first_temp_dir)
     entar.extract_tar_arch(args.second, second_temp_dir)
 
+
+    coursename_a = args.first.replace(".tar.gz", "")
+    coursename_b = args.second.replace(".tar.gz", "")
+
+    first_temp_dir = os.path.join(first_temp_dir, coursename_a)
+    second_temp_dir = os.path.join(second_temp_dir, coursename_b)
+
     #run studio_clean_xml
     csx.clean(first_temp_dir)
     csx.clean(second_temp_dir)
@@ -59,16 +67,16 @@ def main():
     cm = merger.XmlMerger(first_xml, second_xml)
 
     if args.insertafter is None:
-        print 'append file a'
         cm.append()
     else:
-        print 'insert at given position'
         cm.insert_at(args.insertafter)
 
     #Combine_A_B
 
     #Pack_A_B
-    #entar.make_tarfile('2016_SS_clean.tar.gz', 'tmp/2016_SS')
+    entar.make_tarfile(args.output, first_temp_dir)
+
+    #clean
 
 if __name__ == '__main__':
     main()
