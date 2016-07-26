@@ -4,6 +4,7 @@ import entar
 import studio_cleaner.clean_studio_xml as csx
 import xmlmerger as merger
 import os, os.path
+from distutils import dir_util
 
 def parseargs():
     ''' Parse the command-line arguments '''
@@ -43,27 +44,26 @@ def main():
     #make sure both folder are empty
 
     #extract file a and b
-    entar.extract_tar_arch(args.first, first_temp_dir)
     entar.extract_tar_arch(args.second, second_temp_dir)
+    entar.extract_tar_arch(args.first, first_temp_dir)
 
+    coursename_b = os.listdir(second_temp_dir)[0]
+    coursename_a = os.listdir(first_temp_dir)[0]
 
-    coursename_a = args.first.replace(".tar.gz", "")
-    coursename_b = args.second.replace(".tar.gz", "")
-
-    first_temp_dir = os.path.join(first_temp_dir, coursename_a)
     second_temp_dir = os.path.join(second_temp_dir, coursename_b)
+    first_temp_dir = os.path.join(first_temp_dir, coursename_a)
 
     #run studio_clean_xml
-    csx.clean(first_temp_dir)
     csx.clean(second_temp_dir)
+    csx.clean(first_temp_dir)
 
     #delete empty folder
-    entar.remove_empty_folder(first_temp_dir)
     entar.remove_empty_folder(second_temp_dir)
+    entar.remove_empty_folder(first_temp_dir)
 
-    first_xml = first_temp_dir + '/course.xml'
     second_xml = second_temp_dir + '/course.xml'
-
+    first_xml = first_temp_dir + '/course.xml'
+    
     cm = merger.XmlMerger(first_xml, second_xml)
 
     if args.insertafter is None:
@@ -72,6 +72,7 @@ def main():
         cm.insert_at(args.insertafter)
 
     #Combine_A_B
+    dir_util.copy_tree(second_temp_dir, first_temp_dir)
 
     #Pack_A_B
     entar.make_tarfile(args.output, first_temp_dir)
