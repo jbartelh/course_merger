@@ -37,6 +37,9 @@ class XmlMerger(object):
         ''' Append course A with the content of course B '''
         self.__append_course_a()
         os.unlink(self.xml_file_a)
+        #self.__write_xml(self.first_tree, self.xml_file_a)
+        
+    def write_xml(self):
         self.__write_xml(self.first_tree, self.xml_file_a)
         
     def insert_at(self, insert_pos):

@@ -38,14 +38,17 @@ def parseargs():
 def main():
     ''' main '''
     args = parseargs()
-    first_temp_dir = './tmp/A'
-    second_temp_dir = './tmp/B'
+    merge_course(args.first, args.second, args.insertafter, args.output)
 
     #make sure both folder are empty
-
+def merge_course(firstfile, secondfile, output=None, insertafter=None):
+    
+    first_temp_dir = './tmp/A'
+    second_temp_dir = './tmp/B'
+    
     #extract file a and b
-    entar.extract_tar_arch(args.second, second_temp_dir)
-    entar.extract_tar_arch(args.first, first_temp_dir)
+    entar.extract_tar_arch(secondfile, second_temp_dir)
+    entar.extract_tar_arch(firstfile, first_temp_dir)
 
     coursename_b = os.listdir(second_temp_dir)[0]
     coursename_a = os.listdir(first_temp_dir)[0]
@@ -66,16 +69,22 @@ def main():
     
     cm = merger.XmlMerger(first_xml, second_xml)
 
-    if args.insertafter is None:
+    if insertafter is None:
         cm.append()
     else:
-        cm.insert_at(args.insertafter)
+        cm.insert_at(insertafter)
 
     #Combine_A_B
     dir_util.copy_tree(second_temp_dir, first_temp_dir)
 
-    #Pack_A_B
-    entar.make_tarfile(args.output, first_temp_dir)
+    #writes combined xml tree in first_temp_dir
+    cm.write_xml()
+
+    #Pack_A_B(first_temp_dir)
+    if output is None:
+        entar.make_tarfile('/media/joel/Transfer/OpenEdX/course_export/output.tar.gz', first_temp_dir)
+    else:
+        entar.make_tarfile(output, first_temp_dir)
 
     #clean
 
