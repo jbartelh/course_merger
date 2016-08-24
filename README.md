@@ -1,6 +1,6 @@
 # course_merger #
 
-A little tool to merge two edX-Courses. Just login into the edX-Studio and Export the two courses which shall be merged together. For the GUI-version run the ```$ python course_merger_ui.py ``` script or use the non-GUI-version with: ```$ python course_merger.py ```. The ```-h``` argument show the help with al the parameter description.
+A little tool to merge two edX-Courses. Just login into the edX-Studio and Export the two courses which shall be merged together. For the GUI-version run the ```$ python course_merger_ui.py ``` script or use the non-GUI-version with: ```$ python course_merger.py ```. The ```-h``` argument show the help with all the parameter description.
 
 ## How to install: ##
 
