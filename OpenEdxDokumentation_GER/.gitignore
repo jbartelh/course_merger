@@ -1,0 +1,7 @@
+# Byte-compiled / optimized / DLL files
+*.aux
+*.log
+*.out
+*.pdf
+*.gz
+*.toc
