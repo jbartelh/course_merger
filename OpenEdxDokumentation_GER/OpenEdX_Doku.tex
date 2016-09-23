@@ -1,0 +1,403 @@
+%% Erläuterungen zu den Befehlen erfolgen unter
+%% diesem Beispiel.
+
+\documentclass{scrartcl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{nameref}
+\lstset{
+language=bash,
+frame=single,
+basicstyle=\footnotesize
+}
+
+\usepackage{parskip}
+%\setlength{\parindent}{0pt}
+
+\title{Open edX Dokumentation - Administration}
+\author{Joel Bartelheimer}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Administration - Backend}
+\label{sec:admin}
+
+Die edx-platform ist die Kernkomponente des Open-edx Systems. Sie enthält das learning management system(LMS) und das Studio(CMS) zum organisieren von Kursinhalten. Programmiert wurde die edx-platform fast ausschließlich in Python mit der verwendung des \href{https://www.djangoproject.com/}{Django} Webframeworks.
+
+Das Django Framework kommt standardmäßig mit einer Reihe an Konfigurationen, wie dem Django Adminbereich, welche auch bei Open-edX verwendet werden können. In dem Django Adminbereich können beispielsweise Benutzer mit den dazugehörigen Rollen gepflegt werden. Für die Benutzerverwaltung mithilfe des Django Adminbereiches wird an dieser Stelle auf die Dokumentation der Firma Abstract-Technology GmbH verwiesen(\textit{[ABSTRACT]-HS-Osnabrueck-UserManagement.V1.1.pdf})
+
+Eine weiteres Wichtiges Werkzeuge neben dem Django Adminbereich ist die Django Shell, welche im folgendem Kapitel erklärt wird
+
+\subsection{SSH Backend-Login}
+\label{sec:ssh}
+
+Mit SSH wird auf das Backend von Open-edX zugegriffen. Eine IP-Adresse, Port und Benutzer für das jeweilige System muss dafür vorhanden sein.
+
+\begin{lstlisting}
+$ ssh <User>@<edx-Ip-Adresse> -p <Port>
+\end{lstlisting}
+
+Die Verbindung zur Open-edX Testumgebung \textit{edx-devel} mit dem User \textit{edx-admin} sieht wie folgt aus:
+
+\begin{lstlisting}
+$ ssh edx-admin@131.173.108.215 -p 14301
+\end{lstlisting}
+
+
+
+\subsection{Django Shell commands}
+
+Als erstes sei an dieser Stelle auf den jeweiligen Wiki-Bereich der \textit{edx-platform} auf Github verweisen(\href{https://github.com/edx/edx-platform/wiki/Shell-commands}{Wiki Shell commands}), da dort ebenfalls einiges Dokumentiert ist.
+
+Für diverse administrative Aufgaben am Open-edX System wird die durch Django gelieferte \lstinline|manage.py| verwendet. Der syntax zur verwendung sieht wie folgt aus:
+
+\begin{lstlisting}
+$ path/to/edx-platform/manage.py  [lms|cms]  --settings=aws <cmd>
+\end{lstlisting}
+
+Zum Ausführen muss der Pfad zur Open-edX Installation angegeben werden (\textit{path/to/edx-platform}), zum Ausführen werden spezielle User-Rechte benötigt und zusätzlich muss eine spezielle Python Umgebung für Open-edX verwendet werden. Mit \textit{lms} oder \textit{cms} wird entweder das \textit{learning management System} oder die Kursverwaltung \textit{Studio} angesprochen. Mit \textit{<cmd>} wird der auszuführende Befehl angegeben.
+
+\begin{lstlisting}[caption={help command}, label=lst:django_help]
+$ cd /edx/app/edxapp/edx-platform/
+$ sudo -u edxapp /edx/bin/python.edxapp manage.py cms --settings=aws help
+\end{lstlisting}
+
+In Listing~\ref{lst:django_help} wird als erstes in das Verzeichnies der Open-edX Installation gewechselt. Der nachfolgende Befehl wird als \textit{edxapp}-User ausgeführt, wobei \textit{/edx/bin/python.edxapp} ein Verweis auf die spezielle Python Umgebung darstellt und der \lstinline|help|-Befehl alle verfügbaren Befehle für das Studio(cms) auflistet. Die Ausgabe des |help|-Befehl ist in Listing~\ref{lst:output_help_cms} dargestellt.
+
+Die verfügbaren Befehle für das \textit{lms} unterscheiden sich nur geringfügig von denen des Studios, da die meisten Befehle vom Django stadardmäßig bereigestellt werden. Eine kurze Auflistung der speziellen \textit{lms}-Befehle ist in Listing~\ref{lst:output_help_lms} zu sehen.
+
+\begin{lstlisting}[caption={Ausgabe von help (auflisten aller Befehle) für das Studio}, label=lst:output_help_cms, breaklines]
+Usage: manage.py subcommand [options] [args]
+
+Options:
+  -v VERBOSITY, --verbosity=VERBOSITY
+                        Verbosity level; 0=minimal output, 1=normal output,
+                        2=verbose output, 3=very verbose output
+  --settings=SETTINGS   The Python path to a settings module, e.g.
+                        "myproject.settings.main". If this isn't provided, the
+                        DJANGO_SETTINGS_MODULE environment variable will be
+                        used.
+  --pythonpath=PYTHONPATH
+                        A directory to add to the Python path, e.g.
+                        "/home/djangoprojects/myproject".
+  --traceback           Print traceback on exception
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+
+Type 'manage.py help <subcommand>' for help on a specific subcommand.
+
+Available subcommands:
+
+[auth]
+    changepassword
+    createsuperuser
+
+[contentstore]
+    check_course
+    cleanup_assets
+    clone_course
+    create_course
+    delete_course
+    delete_orphans
+    edit_course_tabs
+    empty_asset_trashcan
+    export
+    export_all_courses
+    export_convert_format
+    fix_not_found
+    git_export
+    import
+    migrate_to_split
+    populate_creators
+    prompt
+    restore_asset_from_trashcan
+    utils
+    xlint
+
+[django]
+    cleanup
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    reset
+    runfcgi
+    shell
+    sql
+    sqlall
+    sqlclear
+    sqlcustom
+    sqlflush
+    sqlindexes
+    sqlinitialdata
+    sqlreset
+    sqlsequencereset
+    startapp
+    startproject
+    validate
+
+[django_nose]
+    test
+
+[django_openid_auth]
+    openid_cleanup
+
+[djcelery]
+    camqadm
+    celery
+    celerybeat
+    celerycam
+    celeryctl
+    celeryd
+    celeryd_detach
+    celeryd_multi
+    celeryev
+    celerymon
+    djcelerymon
+
+[edxmako]
+    preprocess_assets
+
+[openassessment]
+    create_oa_submissions
+    simulate_ai_grading_error
+    upload_oa_data
+
+[require]
+    require_init
+
+[south]
+    convert_to_south
+    datamigration
+    graphmigrations
+    migrate
+    migrationcheck
+    schemamigration
+    startmigration
+    syncdb
+    testserver
+
+[static_replace]
+    clear_collectstatic_cache
+
+[staticfiles]
+    collectstatic
+    findstatic
+    runserver
+
+[student]
+    6002exportusers
+    6002importusers
+    add_to_group
+    anonymized_id_mapping
+    assigngroups
+    cert_restriction
+    change_enrollment
+    create_random_users
+    create_user
+    emaillist
+    get_grades
+    set_staff
+    sync_user_info
+    transfer_students
+    userinfo
+
+[user_api]
+    email_opt_in_list
+
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Ausgabe von help (auflisten aller Befehle) für das lms}, label=lst:output_help_lms, breaklines]
+...
+[certificates]
+    cert_whitelist
+    fix_ungraded_certs
+    gen_cert_report
+    regenerate_user
+    ungenerated_certs
+
+[courseware]
+    clean_history
+    clean_xml
+    dump_course_ids
+    dump_course_structure
+    export_course
+    import
+    metadata_to_json
+    regrade_partial
+    remove_input_state
+...
+\end{lstlisting}
+
+\subsubsection{Courseware - MongoDB}
+Die Kursinhalte sind bei Open-edX in einer eigenen noSQL-Datenbank gespeichert. Da die meisten Befehle der Django-Shell nur Datenbankoperation sind, könnte man prinziepiell auch direkt auf der Datenbank operieren statt die Befehle zu verwenden. Um keine Kurse zu zerstören sollten Schreiboperationen mit höchster Vorsicht verwendet werden.
+
+\paragraph{MongoDB zugriff über SSH-Sitzung}
+
+Die \href{https://docs.mongodb.com/getting-started/shell/client/}{MongoDB Shell} wird mit dem Befehl \lstinline|mongo| gestartet, siehe Listing~\ref{lst:mongo}.
+
+\begin{lstlisting}[caption={MongoDB shell}, label=lst:mongo]
+edx-admin@edx-devel:~$ mongo
+MongoDB shell version: 2.6.11
+connecting to: test
+> 
+\end{lstlisting}
+
+Die für Open-edX interessante Datenbank ist die \textit{edxapp}, mit \lstinline|use edxapp| wird diese verwendet. Listing~\ref{lst:mongo_list_courses} zeigt wie über die MongoDB-Shell alle existierenden Kurse aufgelistet werden können.
+
+\begin{lstlisting}[caption={Auflisten aller Kurse}, label=lst:mongo_list_courses]
+> use edxapp
+db.modulestore.find( { "_id.category" : "course" }, {'name':'1'} )
+\end{lstlisting}
+
+\paragraph{MongoDB zugriff über GUI}
+
+Statt über die Konsole kann auch eine GUI-Anwendung für den Datenbankzugriff verwendet werden, z.B. Robomongo. Die Verbindungsparameter für den Zugriff mit Robomongo:
+
+\begin{itemize}
+\item Connection Method: Standard TCP/IP over SSH
+\item SSH Hostname: siehe Kapitel~\ref{sec:ssh}
+\item SSH Username: siehe Kapitel~\ref{sec:ssh}
+\item Address: 127.0.0.1
+\item Port: 27017
+\end{itemize}
+
+\subsubsection{MySQL-Datenbank}
+
+Für alle weiteren Daten, neben den Kursinhalten, verwendet Open-edX eine MySQL-Datenbank. Auf diese kann ebenfalls mittels Shell oder GUI zugegriffen werden und Schreiboperationen sind auch hier kritisch.
+
+Ein Beispiel für die verwendung der MySQL-Shell ist im Kapitel~\ref{sec:uc_list_users} Abschnitt \nameref{p:uc_mysql} dargestellt.
+
+Verbindungsparameter zur MySQL-Datenbank mit der MySQL Workbench:
+
+\begin{itemize}
+\item Connection Method: Standard TCP/IP over SSH
+\item SSH Hostname: siehe Kapitel~\ref{sec:ssh}
+\item SSH Username: siehe Kapitel~\ref{sec:ssh}
+\item MySQL Hostname: 127.0.0.1
+\item MySQL Server Port: 3306
+\item Username: root (no password)
+\item  Default Schema: edxapp
+\end{itemize}
+
+\subsection{Anwendungsfall: Kurs löschen}
+
+Die Django-Shell für das Studio bietet zum Löschen eines Kurses den Befehl \lstinline|delete_course| an. Der Befehl bietet zwei Parameter an, die Kurs-Id und den optionalen Parameter \lstinline|commit|. Mit dem \textit{lms}-Befehl \lstinline|dump_course_ids| kann eine Liste aller Kurs-Ids ausgegeben werden.
+
+\begin{lstlisting}[caption={Syntax \lstinline|delete_course|}, label=lst:delete_course_syntax, breaklines]
+manage.py cms --settings=aws delete_course <course_id> [commit]
+\end{lstlisting}
+
+Durch Angabe der jeweiligen Kurs-Id und ohne Commit kann vorab geprüft werden ob Fehler auftreten. Wenn alles in Ordnung ist, kann mit \lstinline|commit| und zwei weiteren Bestätigungen der Kurs gelöscht werden. In Listing~\ref{lst:delete_course} ist dieser Ablauf einemal dargestellt.
+
+\begin{lstlisting}[caption={Ausgabe nach \lstinline|delete_course| erst ohne und dann mit commit}, label=lst:delete_course, breaklines]
+edx-admin@edx-devel:/edx/app/edxapp/edx-platform$ sudo -u edxapp /edx/bin/python.edxapp manage.py cms --settings=aws delete_course qqq/qqq/qqq
+2016-09-23 07:10:01,197 INFO 30743 [dd.dogapi] dog_stats_api.py:66 - Initializing dog api to use statsd: localhost, 8125
+
+edx-admin@edx-devel:/edx/app/edxapp/edx-platform$ sudo -u edxapp /edx/bin/python.edxapp manage.py cms --settings=aws delete_course qqq/qqq/qqq commit
+2016-09-23 07:10:28,880 INFO 30848 [dd.dogapi] dog_stats_api.py:66 - Initializing dog api to use statsd: localhost, 8125
+Actually going to delete the course from DB....
+Deleting course qqq/qqq/qqq. Confirm? [y/N] y
+Are you sure. This action cannot be undone! [y/N] y
+removing User permissions from course....
+edx-admin@edx-devel:/edx/app/edxapp/edx-platform$
+\end{lstlisting}
+
+\subsection{Anwendungsfall: Benutzer auflisten}
+\label{sec:uc_list_users}
+
+Hier werden einmal zwei verschiedene Varianten dargestellt, welche alle im System angelegten Benutzer auflistet. Benutzer mit dem Status \lstinline|is_superuser = true| können beim Login in den Django Adminbereich (siehe Kapitel~\ref{sec:admin}, Dokumantation der Fa. Abstract-Technology) verwendet werden.
+
+\paragraph{Django-Shell}
+
+In der Django-Shell wird Python-Code verwendet, welcher über den integrierten ORM(object-relational mapping) auf die Datenbank zugreift. Die zurückgegebenen Objekte beinhalten nicht nur den Namen, sondern auch alle anderen Informationen. Mit \lstinline|user[0].email| wird beispielsweise die E-Mail von dem Benutzer \textit{honor} ausgegeben. Da es sich um Python-Code handelt kann noch weitere Logik implementiert oder ganze Python-Scripte geschrieben werden.
+
+\begin{lstlisting}[caption={Auflisten aller Benutzer(Django)}, label=lst:django_list_users, breaklines]
+$ sudo -u edxapp /edx/bin/python.edxapp manage.py cms --settings=aws shell
+2016-09-23 05:31:56,314 INFO 20588 [dd.dogapi] dog_stats_api.py:66 - Initializing dog api to use statsd: localhost, 8125
+Python 2.7.3 (default, Jun 22 2015, 19:33:41) 
+[GCC 4.6.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from django.contrib.auth.models import User
+>>> user = User.objects.all()
+>>> user
+[<User: honor>, <User: audit>, <User: verified>, <User: staff>, <User: fruend>, <User: user>]
+
+\end{lstlisting}
+
+\paragraph{MySQL-Shell}
+\label{p:uc_mysql}
+
+Das Listing~\ref{lst:mysql_list_users} zeigt einen Zugriff auf die MySQL-Datenbank mittels der MySQL-Shell. Mit dem Benutzer \textit{root} wird sich mit der lokalen MySQL-Instanz verbunden und mit dem \lstinline|use edxapp| Befehl auf das passende DB-Schema gewechselt. Anshcließend folgt ein einfacher SQL-Befehl der alle Einträge aus der Tabelle \lstinline|auth_user| ausgiebt.
+
+\begin{lstlisting}[caption={Auflisten aller Benutzer(MySQL)}, label=lst:mysql_list_users, breaklines]
+$ mysql --user=root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1373249
+Server version: 5.6.24-2+deb.sury.org~precise+2 (Ubuntu)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use edxapp
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT * FROM edxapp.auth_user;
+
+\end{lstlisting}
+
+\section{Link Sammlung}
+
+\href{http://docs.edx.org/}{Documentation for edx.org and the Open edX Community}
+
+\begin{description}
+
+\item[Installing, Configuring, and Running the Open edX Platform]\hfill \\
+Anleitungen zum Hosten einer edX-Installation für den produktiven oder entwicklungs Einsatz. Changelog der verschiedenen Releases. Konfigurieren der EdX-Plattform, wie z.B. das Installieren eines XBlock.
+ \href{http://edx.readthedocs.io/projects/edx-installing-configuring-and-running/en/latest/}{Installing, Configuring, and Running the Open edX Platform}
+
+\item[Open edX Installation Options (Atlassian-Wiki)]\hfill \\
+Anleitungen zum Hosten einer edX-Installation für den produktiven oder entwicklungs Einsatz
+ \href{https://openedx.atlassian.net/wiki/display/OpenOPS/Open+edX+Installation+Options}{Open edX Installation Options}
+
+\item[EdX Open Learning XML Guide]\hfill \\
+Dokumentation für das XML-basierte Format für edX-Kurse. Aufbau, Struktur und Beispiele für das Erstellen und Bearbeiten von Kursen mit dem XML-Format.
+ \href{http://edx.readthedocs.io/projects/edx-open-learning-xml/en/latest/}{EdX Open Learning XML Guide}
+
+\item[edX Github Repositories]\hfill \\
+Alle Git-Repositories von edX und  deren Dokumentationen.
+ \href{https://github.com/edx}{EdX auf Github}
+
+Interesannte Repositories:
+
+\begin{itemize}
+\item \href{https://github.com/edx/edx-platform/wiki}{edx-platform} Kernkomponente mit Wiki in dem unteranderem Häufige Probleme und technische Sachen wie die Django Shell-Commands erklärt werden.
+\item \href{https://github.com/edx/edx-tools/wiki}{edx-tools} Sammlung von hilfreichen Tools und Python-Scripts wie z.B. dem \textit{Clean Studio XML}.
+\end{itemize}
+
+\end{description}
+
+\end{document}
